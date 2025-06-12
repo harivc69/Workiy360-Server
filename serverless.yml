@@ -1,0 +1,36 @@
+service: my-service
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  preOnboarding:
+    handler: handler.preOnboardingHandler
+    events:
+      - http:
+          path: pre-onboarding
+          method: post
+      - http:
+          path: pre-onboarding/{id}
+          method: get
+      - http:
+          path: pre-onboarding/{id}
+          method: put
+
+resources:
+  Resources:
+    MyDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: PreOnboardingTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
