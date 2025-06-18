@@ -5,4 +5,8 @@ module.exports = {
   dbUrl: process.env.MONGO_URI_STAGE,
   dbName: 'W360',
   collectionNames,
+  s3: {
+    profileBucket: process.env.S3_PROFILE_BUCKET,
+    appBucket: process.env.S3_APP_BUCKET,
+  },
 };

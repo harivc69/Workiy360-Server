@@ -83,6 +83,28 @@ const getAppDataById = async (req, res) => {
   }
 };
 
+const getAppDataBasedOnFilter = async (req, res) => {
+  console.log("Running aggregation (filtered fetch) on appdata");
+
+  try {
+    const collection = getAppDataCollection(req);
+    const pipeline = req.body.pipeline || [];
+
+    const result = await collection.aggregate(pipeline).toArray();
+
+    res.status(200).json({
+      status: "success",
+      data: result,
+    });
+  } catch (error) {
+    console.error("Error in getAppDataBasedOnFilter:", error);
+    res.status(500).json({
+      status: "failure",
+      message: error.message,
+    });
+  }
+};
+
 const updateAppDataById = async (req, res) => {
   const uuid = req.params.uuid;
   console.log(`Updating app data for UUID: ${uuid}`);
@@ -151,6 +173,7 @@ module.exports = {
   createAppData,
   getAllAppData,
   getAppDataById,
+  getAppDataBasedOnFilter,
   updateAppDataById,
   deleteAppDataById,
 };
