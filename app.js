@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./middlewares/database');
 const routes = require('./routers');
+const { default: serverlessExpress } = require('@vendia/serverless-express');
 
 const app = express();
 
@@ -16,4 +17,5 @@ app.get('/', (req, res) => {
   res.send('🚀 HRMS API is running');
 });
 
-module.exports = app;
+// Export Lambda handler
+exports.handler = serverlessExpress({ app });
