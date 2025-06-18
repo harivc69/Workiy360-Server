@@ -1,22 +1,23 @@
-service: workiy360-server
+service: w360-api
 
 provider:
   name: aws
   runtime: nodejs18.x
-  region: us-east-1
+  region: ap-south-1
   stage: dev
   memorySize: 512
   timeout: 30
 
 functions:
-  api:
+  W360:
     handler: app.handler
+    name: W360  # This must match your actual Lambda function name
     events:
       - httpApi:
-          path: /{proxy+}
+          path: /
           method: ANY
       - httpApi:
-          path: /
+          path: /{proxy+}
           method: ANY
 
 plugins:
@@ -25,19 +26,8 @@ plugins:
 package:
   exclude:
     - node_modules/**
-    - .gitignore
     - .git/**
     - README.md
     - scripts/**
-    - aws/**
     - config/**
-    - controllers/**
-    - middlewares/**
-    - routers/**
-    - utils/**
-    - test/**
-    - tests/**
-    - coverage/**
-    - .vscode/**
-    - .env
-    - .env.*
+    - aws/**
