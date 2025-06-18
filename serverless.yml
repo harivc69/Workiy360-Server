@@ -1,0 +1,33 @@
+service: w360-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  stage: dev
+  memorySize: 512
+  timeout: 30
+
+functions:
+  W360:
+    handler: app.handler
+    name: W360  # This must match your actual Lambda function name
+    events:
+      - httpApi:
+          path: /
+          method: ANY
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-offline
+
+package:
+  exclude:
+    - node_modules/**
+    - .git/**
+    - README.md
+    - scripts/**
+    - config/**
+    - aws/**
