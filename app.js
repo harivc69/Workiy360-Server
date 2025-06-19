@@ -5,15 +5,16 @@ const serverlessExpress = require('@vendia/serverless-express');
 
 const app = express();
 
-// Middleware
 app.use(express.json());
-app.use(connectDB); // DB middleware runs per request
-
-// Mount routes
+app.use(connectDB);
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
   res.send('🚀 HRMS API is running');
 });
 
+// ✅ Export app for local usage (server.js)
+module.exports = app;
+
+// ✅ Export handler for AWS Lambda
 module.exports.handler = serverlessExpress({ app });
