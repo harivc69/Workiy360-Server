@@ -12,13 +12,8 @@ app.use(connectDB); // DB middleware runs per request
 // Mount routes
 app.use('/api', routes);
 
-// Health check
 app.get('/', (req, res) => {
   res.send('🚀 HRMS API is running');
 });
 
-// Export Express app for local development
-module.exports = app;
-
-// Export Lambda handler for serverless
-exports.handler = serverlessExpress({ app });
+module.exports.handler = serverlessExpress({ app });

@@ -24,18 +24,15 @@ functions:
           path: /{proxy+}
           method: ANY
 
-# ✅ Only offline plugin
 plugins:
   - serverless-offline
 
-# ✅ Enable built-in esbuild (optional, useful for faster builds)
 package:
   patterns:
     - '!scripts/**'
     - '!aws/**'
     - '!README.md'
     - '!**/.git/**'
-    - 'node_modules/**'     
     - '**/*.js'
     - '**/*.json'
-    - '!package-lock.json'
+    - 'node_modules/**'
