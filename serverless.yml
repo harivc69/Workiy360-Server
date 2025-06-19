@@ -10,7 +10,7 @@ provider:
   memorySize: 512
   timeout: 30
   deploymentBucket:
-    name: w360-api-dev-deployment-bucket  
+    name: w360-api-dev-deployment-bucket
 
 functions:
   W360:
@@ -24,16 +24,15 @@ functions:
           path: /{proxy+}
           method: ANY
 
+# ✅ Only offline plugin
 plugins:
-  - serverless-esbuild
   - serverless-offline
 
-custom:
-  esbuild:
-    bundle: true
-    platform: node
-    target: node18
-    exclude:
-      - aws-sdk
-    external:
-      - express
+# ✅ Enable built-in esbuild (optional, useful for faster builds)
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!scripts/**'
+    - '!aws/**'
+    - '!README.md'
+    - '!**/.git/**'
