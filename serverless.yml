@@ -29,7 +29,6 @@ plugins:
 
 package:
   exclude:
-    - node_modules/**
     - .git/**
     - README.md
     - scripts/**
