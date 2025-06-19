@@ -25,11 +25,15 @@ functions:
           method: ANY
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
 
-package:
-  exclude:
-    - .git/**
-    - README.md
-    - scripts/**
-    - aws/**
+custom:
+  esbuild:
+    bundle: true
+    platform: node
+    target: node18
+    exclude:
+      - aws-sdk
+    external:
+      - express
