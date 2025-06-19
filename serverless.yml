@@ -31,8 +31,11 @@ plugins:
 # ✅ Enable built-in esbuild (optional, useful for faster builds)
 package:
   patterns:
-    - '!node_modules/**'
     - '!scripts/**'
     - '!aws/**'
     - '!README.md'
     - '!**/.git/**'
+    - 'node_modules/**'     
+    - '**/*.js'
+    - '**/*.json'
+    - '!package-lock.json'
