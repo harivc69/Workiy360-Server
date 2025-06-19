@@ -32,5 +32,4 @@ package:
     - .git/**
     - README.md
     - scripts/**
-    - config/**
     - aws/**
