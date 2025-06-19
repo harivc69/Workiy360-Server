@@ -1,3 +1,4 @@
+frameworkVersion: '~4.17.1'
 service: w360-api
 
 provider:
@@ -7,11 +8,13 @@ provider:
   stage: dev
   memorySize: 512
   timeout: 30
+  deploymentBucket:
+    name: w360-api-dev-deployment-bucket  
 
 functions:
   W360:
     handler: app.handler
-    name: W360  # This must match your actual Lambda function name
+    name: W360
     events:
       - httpApi:
           path: /
