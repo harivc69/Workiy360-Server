@@ -15,7 +15,7 @@ provider:
 functions:
   W360:
     handler: app.handler
-    name: W360
+    name: W360-dev
     events:
       - httpApi:
           path: /
