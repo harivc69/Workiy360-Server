@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const connectToDatabase = require("../middlewares/database.js");
+
+
 const {
   createAppData,
   getAllAppData,
@@ -10,7 +11,8 @@ const {
   deleteAppDataById,
 } = require("../controllers/appdataController.js");
 
-router.use(connectToDatabase);
+
+
 
 router.post("/", createAppData);
 router.get("/", getAllAppData);
